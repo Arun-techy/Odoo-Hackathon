@@ -1,51 +1,137 @@
-# Dayflow – HRMS (Odoo Hackathon)
+<div align="center">
 
-Every workday, perfectly aligned.
+# ⏱️ Dayflow — HRMS
+### *Every workday, perfectly aligned.*
 
-## Stack
-- Frontend: React + Vite + Tailwind CSS
-- Backend: Node.js + Express + SQLite (better-sqlite3)
-- Auth: JWT
-- Differentiator: AI HR Assistant powered by Google Gemini (personalized answers using the employee's real leave/attendance data), plus automatic team-leave-conflict flagging for admins.
+Dayflow is a beautiful, modern **Human Resources Management System** built for the Odoo Hackathon. It brings attendance, leave, payroll, and approvals into one seamless, visually stunning experience — no backend required.
 
-## Quick Start (each teammate runs this locally)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-View_Project-4f46e5?style=for-the-badge)](https://arun-techy.github.io/Odoo-Hackathon/)
+[![Built with](https://img.shields.io/badge/Built_with-HTML5_%7C_CSS3_%7C_JS-orange?style=flat-square)](#-technology-stack)
+[![Three.js](https://img.shields.io/badge/3D-Three.js-black?style=flat-square&logo=three.js)](https://threejs.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](#-license)
 
-### 1. Backend
+</div>
+
+---
+
+## 📸 Preview
+
+<div align="center">
+  <img src="assets/screenshots/hero.png" alt="Dayflow Hero Section" width="80%">
+  <br><br>
+  <img src="assets/screenshots/dashboard.png" alt="Dayflow Dashboard" width="45%">
+  <img src="assets/screenshots/day-ring.png" alt="The Day Ring Component" width="45%">
+</div>
+
+> 💡 Add your actual screenshots/GIFs to an `assets/screenshots/` folder and update the paths above — this makes the repo pop on GitHub.
+
+---
+
+## ✨ Features
+
+| Module | Description |
+|---|---|
+| 🎨 **Stunning UI/UX** | Custom CSS animations, modern styling, 3D hero section (Three.js), and interactive tilt cards |
+| 🔐 **Role-Based Access** | Distinct dashboards and permissions for `Employees` and `HR Officers (Admins)` |
+| 🔵 **The "Day Ring"** | Signature circular UI component that visually tracks workday progress in real time |
+| ⏰ **Attendance** | Clock in/out, daily logs, and visual presence tracking |
+| 🌴 **Leave Management** | Apply for leave, track status, and approve/reject requests (Admin) |
+| 💰 **Payroll** | Overview of basic pay, allowances, deductions, and net salary |
+| 👤 **Profile** | View and edit personal information |
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Tech |
+|---|---|
+| **Frontend** | Vanilla HTML5, CSS3 (Custom Properties, Flexbox/Grid, Animations), Vanilla JavaScript (ES6+) |
+| **3D Graphics** | [Three.js](https://threejs.org/) — animated hero section |
+| **Data Layer** | Client-side `localStorage` (mock database) via `js/data.js` — **zero backend needed** |
+| **Deployment** | GitHub Pages |
+
+---
+
+## 🏁 Quick Start (Run Locally)
+
+Since Dayflow runs entirely on `localStorage`, there's **no build step, no `npm install`, no database setup**.
+
 ```bash
-cd backend
-npm install
-cp .env.example .env
-# open .env and paste your Gemini API key (optional — app works without it, AI chat just shows a setup message)
-npm run dev
-```
-Backend runs on **http://localhost:5000**
-A default admin account is auto-created on first run:
-- Email: `admin@dayflow.com`
-- Password: `Admin@123`
+# 1. Clone the repository
+git clone https://github.com/Arun-techy/Odoo-Hackathon.git
+cd Odoo-Hackathon
 
-### 2. Frontend
+# 2. Open it — that's it!
+# Just open index.html directly in your browser, or serve it locally:
+python -m http.server 8000
+# then visit http://localhost:8000
+```
+
+> ⚠️ Some browsers restrict `localStorage`/module scripts on `file://` URLs. If things don't load correctly, use a local server (like the Python command above, or the VS Code "Live Server" extension).
+
+---
+
+## 📂 Project Structure
+
+```
+Odoo-Hackathon/
+├── index.html          # Landing / hero page
+├── dashboard.html       # Employee & Admin dashboards
+├── css/
+│   ├── style.css        # Core styling & CSS variables
+│   └── animations.css    # Custom animations
+├── js/
+│   ├── data.js           # Mock database (localStorage layer)
+│   ├── auth.js            # Role-based access logic
+│   ├── dayring.js          # Day Ring component logic
+│   └── main.js              # App entry point
+└── assets/
+    └── screenshots/          # Preview images for this README
+```
+
+> 📝 Update this tree to match your actual file layout.
+
+---
+
+## 🧑‍💻 Usage
+
+1. Open the app and log in as either an **Employee** or **HR Officer**.
+2. Employees can clock in/out, apply for leave, and view their payroll & profile.
+3. HR Officers get an admin view to approve/reject leave requests and monitor team attendance.
+4. All data persists in your browser via `localStorage` — clear site data to reset the mock database.
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Backend integration (Odoo API / REST)
+- [ ] Real authentication (JWT / OAuth)
+- [ ] Notifications for leave approvals
+- [ ] Mobile-responsive polish
+- [ ] Exportable payroll reports (PDF)
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork the repo, open issues, or submit a pull request.
+
 ```bash
-cd frontend
-npm install
-npm run dev
+git checkout -b feature/your-feature-name
+git commit -m "Add: your feature"
+git push origin feature/your-feature-name
 ```
-Frontend runs on **http://localhost:5173** and proxies `/api` calls to the backend.
 
-## What's already built
-- Sign up / Sign in (JWT, roles: employee / admin)
-- Employee Dashboard + Admin Dashboard
-- Profile view/edit (employees edit phone/address only; admin edits everything)
-- Attendance: check-in/check-out, daily log, visual heatmap
-- Leave: apply, approve/reject, with **team-conflict auto-flagging** (admin sees a warning if 2+ people from the same department are off on overlapping dates)
-- AI HR Assistant chat widget (bottom-right bubble) — answers questions using the logged-in employee's real leave/attendance data + a policy blurb
+---
 
-## Suggested team split from here
-- **Backend person:** add validation, payroll editing for admin, polish error handling
-- **Frontend person A:** polish Employee views, mobile responsiveness
-- **Frontend person B:** polish Admin views, employee detail drill-down, salary editing UI
-- **4th person:** demo video script + Gemini API key setup + testing the full flow end-to-end
+## 📄 License
 
-## Notes
-- DB is a local file `backend/dayflow.db` (SQLite) — no server setup needed.
-- Keep all code in a **single branch** per hackathon submission rules.
-- Remember: add your evaluator as a GitHub collaborator (already done ✅) and submit your repo link + video by the deadlines shown on the hackathon portal.
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+
+Made with ❤️ for **Odoo Hackathon** by [Arun](https://github.com/Arun-techy)
+
+</div>
