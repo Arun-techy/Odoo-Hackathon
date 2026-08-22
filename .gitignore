@@ -1,0 +1,4 @@
+node_modules/
+.env
+dayflow.db
+.DS_Store
