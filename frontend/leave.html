@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leave · Dayflow HRMS</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="page-enter">
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="day-ring day-ring-mini" id="sideRing"></div>
+      Dayflow
+    </div>
+    <nav class="sidebar-nav">
+      <a href="employee-dashboard.html" id="navDashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>Dashboard</a>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.4 7-5.4S18.8 16.4 20 20"/></svg>Profile</a>
+      <a href="attendance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Attendance</a>
+      <a href="leave.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3.5h9l3 3V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M9 12.5l2 2 4-4.5"/></svg><span id="navLeaveLabel">Leave</span></a>
+      <a href="payroll.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12.5" rx="2"/><path d="M3 10.5h18"/><circle cx="7.2" cy="14.5" r="1"/></svg>Payroll</a>
+    </nav>
+    <div class="sidebar-user">
+      <img class="avatar" data-user-avatar src="" alt="">
+      <div>
+        <div class="u-name" data-user-name>—</div>
+        <div class="u-role" data-user-role>—</div>
+      </div>
+      <button class="sidebar-logout" data-logout title="Log out">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-row">
+        <div>
+          <h1 id="leaveTitle">Leave &amp; Time-off</h1>
+          <div class="sub" id="leaveSub">Apply and track your requests</div>
+        </div>
+        <button class="btn btn-accent" id="applyBtn">Apply for leave</button>
+      </div>
+      <div class="flow-bar"><div class="flow-bar-fill"></div></div>
+    </header>
+
+    <div class="content">
+      <div class="grid grid-3" id="leaveStats"></div>
+
+      <div class="card">
+        <div class="section-head" style="margin-bottom:16px;">
+          <div class="card-title" style="margin-bottom:0;" id="listTitle">Your requests</div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="leaveTable">
+            <thead id="leaveTheadEmp" style="display:none;">
+              <tr><th>Type</th><th>From</th><th>To</th><th>Remarks</th><th>Status</th></tr>
+            </thead>
+            <thead id="leaveTheadAdmin" style="display:none;">
+              <tr><th>Employee</th><th>Type</th><th>Dates</th><th>Remarks</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="leaveTableBody"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="leaveEmpty" style="display:none;">
+          <div class="es-title">No leave requests yet</div>
+          <div class="es-sub">Apply for leave using the button above.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Apply modal -->
+<div class="modal-backdrop" id="applyModal">
+  <div class="modal">
+    <h3>Apply for leave</h3>
+    <div class="sub">Fill in the details below</div>
+    <form id="applyForm">
+      <div class="field">
+        <label>Leave type</label>
+        <select name="type" required>
+          <option value="Paid">Paid</option>
+          <option value="Sick">Sick</option>
+          <option value="Unpaid">Unpaid</option>
+        </select>
+      </div>
+      <div class="grid grid-2" style="gap:14px;">
+        <div class="field"><label>From</label><input type="date" name="from" required></div>
+        <div class="field"><label>To</label><input type="date" name="to" required></div>
+      </div>
+      <div class="field">
+        <label>Remarks</label>
+        <textarea name="remarks" rows="3" placeholder="Reason for leave" required></textarea>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" onclick="closeModal('applyModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit request</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pagetransitions.js"></script>
+<script src="js/leave.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · Dayflow HRMS</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="page-enter">
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="day-ring day-ring-mini" id="sideRing"></div>
+      Dayflow
+    </div>
+    <nav class="sidebar-nav">
+      <a href="employee-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>Dashboard</a>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.4 7-5.4S18.8 16.4 20 20"/></svg>Profile</a>
+      <a href="attendance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Attendance</a>
+      <a href="leave.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3.5h9l3 3V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M9 12.5l2 2 4-4.5"/></svg>Leave</a>
+      <a href="payroll.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12.5" rx="2"/><path d="M3 10.5h18"/><circle cx="7.2" cy="14.5" r="1"/></svg>Payroll</a>
+    </nav>
+    <div class="sidebar-user">
+      <img class="avatar" data-user-avatar src="" alt="">
+      <div>
+        <div class="u-name" data-user-name>—</div>
+        <div class="u-role" data-user-role>—</div>
+      </div>
+      <button class="sidebar-logout" data-logout title="Log out">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-row">
+        <div>
+          <h1>Good to see you<span id="greetName">, there</span> 👋</h1>
+          <div class="sub" id="dateLine">—</div>
+        </div>
+        <button class="btn btn-accent" id="checkBtn">Check in</button>
+      </div>
+      <div class="flow-bar"><div class="flow-bar-fill"></div></div>
+      <div class="flow-bar-labels"><span>9:00</span><span>Morning</span><span>Afternoon</span><span>18:00</span></div>
+    </header>
+
+    <div class="content">
+
+      <div class="grid grid-4">
+        <div class="card quick-card stagger-1" data-href="attendance.html" role="link" tabindex="0">
+          <div class="qc-icon tone-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17"/></svg></div>
+          <div class="qc-title">Attendance</div>
+          <div class="qc-desc">View your daily &amp; weekly record</div>
+        </div>
+        <div class="card quick-card stagger-2" data-href="leave.html" role="link" tabindex="0">
+          <div class="qc-icon tone-violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3.5h9l3 3V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/></svg></div>
+          <div class="qc-title">Leave Requests</div>
+          <div class="qc-desc">Apply for time-off &amp; track status</div>
+        </div>
+        <div class="card quick-card stagger-3" data-href="profile.html" role="link" tabindex="0">
+          <div class="qc-icon tone-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.4 7-5.4S18.8 16.4 20 20"/></svg></div>
+          <div class="qc-title">Profile</div>
+          <div class="qc-desc">Personal &amp; job details</div>
+        </div>
+        <div class="card quick-card stagger-4" data-href="payroll.html" role="link" tabindex="0">
+          <div class="qc-icon tone-coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12.5" rx="2"/><path d="M3 10.5h18"/></svg></div>
+          <div class="qc-title">Payroll</div>
+          <div class="qc-desc">Salary slips &amp; structure</div>
+        </div>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="card-title">Today's flow</div>
+          <div class="card-hint">Your check-in to check-out progress</div>
+          <div class="day-ring-wrap">
+            <div class="day-ring" id="mainRing"></div>
+            <div>
+              <div id="statusLine" style="font-weight:600; font-size:15px; margin-bottom:6px;">Not checked in yet</div>
+              <div style="font-size:13px; color:var(--text-2); line-height:1.7;">
+                Standard shift 09:00 – 18:00<br>
+                <span id="inOutLine">Tap "Check in" above to start the ring.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-head" style="margin-bottom:14px;">
+            <div class="card-title" style="margin-bottom:0;">Recent activity</div>
+          </div>
+          <div id="activityList" style="display:flex; flex-direction:column; gap:14px;"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-head" style="margin-bottom:16px;">
+          <div>
+            <div class="card-title" style="margin-bottom:0;">Last 14 working days</div>
+          </div>
+        </div>
+        <div class="grid grid-4" id="miniStats"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pagetransitions.js"></script>
+<script src="js/dayring3d.js"></script>
+<script src="js/dashboard-employee.js"></script>
+</body>
+</html>

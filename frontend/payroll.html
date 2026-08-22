@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payroll · Dayflow HRMS</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="page-enter">
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="day-ring day-ring-mini" id="sideRing"></div>
+      Dayflow
+    </div>
+    <nav class="sidebar-nav">
+      <a href="employee-dashboard.html" id="navDashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>Dashboard</a>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.4 7-5.4S18.8 16.4 20 20"/></svg>Profile</a>
+      <a href="attendance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Attendance</a>
+      <a href="leave.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3.5h9l3 3V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M9 12.5l2 2 4-4.5"/></svg><span id="navLeaveLabel">Leave</span></a>
+      <a href="payroll.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12.5" rx="2"/><path d="M3 10.5h18"/><circle cx="7.2" cy="14.5" r="1"/></svg>Payroll</a>
+    </nav>
+    <div class="sidebar-user">
+      <img class="avatar" data-user-avatar src="" alt="">
+      <div>
+        <div class="u-name" data-user-name>—</div>
+        <div class="u-role" data-user-role>—</div>
+      </div>
+      <button class="sidebar-logout" data-logout title="Log out">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-row">
+        <div>
+          <h1 id="payTitle">Payroll</h1>
+          <div class="sub" id="paySub">Your salary structure and slips</div>
+        </div>
+        <select id="empSwitcher" style="display:none; width:auto; padding:10px 14px; border:1.5px solid var(--border); border-radius:8px;"></select>
+      </div>
+      <div class="flow-bar"><div class="flow-bar-fill"></div></div>
+    </header>
+
+    <div class="content">
+      <div class="grid" style="grid-template-columns: 1fr 1.4fr;">
+
+        <div class="card">
+          <div class="card-title">Salary structure</div>
+          <div class="card-hint" id="salaryHint">Read-only breakdown for this month</div>
+          <div id="salaryList" style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;"></div>
+          <div class="divider" style="margin:14px 0;"></div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-weight:600;">Net payable</span>
+            <span id="netPay" style="font-family:var(--f-mono); font-weight:700; font-size:1.1rem; color:var(--flow-teal-deep);">—</span>
+          </div>
+          <form id="editSalaryForm" style="display:none; margin-top:18px; border-top:1px dashed var(--border); padding-top:16px;">
+            <div class="grid grid-2" style="gap:12px;">
+              <div class="field"><label>Basic</label><input type="number" name="basic"></div>
+              <div class="field"><label>HRA</label><input type="number" name="hra"></div>
+              <div class="field"><label>Allowance</label><input type="number" name="allowance"></div>
+              <div class="field"><label>Deductions</label><input type="number" name="deductions"></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="margin-top:6px;">Update salary structure</button>
+          </form>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div class="card">
+            <div class="card-title">Payslip history</div>
+            <div class="card-hint">Last 3 months (simulated)</div>
+            <div id="payslipList" style="display:flex; flex-direction:column; gap:10px;"></div>
+          </div>
+
+          <div class="card" id="orgPayrollCard" style="display:none;">
+            <div class="section-head" style="margin-bottom:14px;">
+              <div class="card-title" style="margin-bottom:0;">Organization payroll</div>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Employee</th><th>Basic</th><th>HRA</th><th>Deductions</th><th>Net</th></tr></thead>
+                <tbody id="orgPayrollBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pagetransitions.js"></script>
+<script src="js/payroll.js"></script>
+</body>
+</html>

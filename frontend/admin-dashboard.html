@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard · Dayflow HRMS</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="page-enter">
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="day-ring day-ring-mini" id="sideRing"></div>
+      Dayflow
+    </div>
+    <nav class="sidebar-nav">
+      <a href="admin-dashboard.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>Dashboard</a>
+      <a href="attendance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Attendance</a>
+      <a href="leave.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3.5h9l3 3V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M9 12.5l2 2 4-4.5"/></svg>Leave Approvals</a>
+      <a href="payroll.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12.5" rx="2"/><path d="M3 10.5h18"/><circle cx="7.2" cy="14.5" r="1"/></svg>Payroll</a>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.4 7-5.4S18.8 16.4 20 20"/></svg>My Profile</a>
+    </nav>
+    <div class="sidebar-user">
+      <img class="avatar" data-user-avatar src="" alt="">
+      <div>
+        <div class="u-name" data-user-name>—</div>
+        <div class="u-role" data-user-role>—</div>
+      </div>
+      <button class="sidebar-logout" data-logout title="Log out">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-row">
+        <div>
+          <h1>HR Control Center</h1>
+          <div class="sub" id="dateLine">—</div>
+        </div>
+      </div>
+      <div class="flow-bar"><div class="flow-bar-fill"></div></div>
+      <div class="flow-bar-labels"><span>9:00</span><span>Org day progress</span><span>18:00</span></div>
+    </header>
+
+    <div class="content">
+
+      <div class="grid grid-4" id="statCards"></div>
+
+      <div class="grid" style="grid-template-columns: 1.5fr 1fr;">
+        <div class="card">
+          <div class="section-head" style="margin-bottom:16px;">
+            <div class="card-title" style="margin-bottom:0;">Employees</div>
+            <span class="eyebrow" id="empCount">—</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Employee</th><th>Department</th><th>Today</th><th>Actions</th></tr></thead>
+              <tbody id="empTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Pending leave requests</div>
+          <div class="card-hint">Approve or reject with one click</div>
+          <div id="pendingLeaveList" style="display:flex; flex-direction:column; gap:12px;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Employee detail modal -->
+<div class="modal-backdrop" id="empModal">
+  <div class="modal" id="empModalBody"></div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pagetransitions.js"></script>
+<script src="js/dashboard-admin.js"></script>
+</body>
+</html>

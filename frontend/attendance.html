@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attendance · Dayflow HRMS</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="page-enter">
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="day-ring day-ring-mini" id="sideRing"></div>
+      Dayflow
+    </div>
+    <nav class="sidebar-nav">
+      <a href="employee-dashboard.html" id="navDashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>Dashboard</a>
+      <a href="profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.4 7-5.4S18.8 16.4 20 20"/></svg>Profile</a>
+      <a href="attendance.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Attendance</a>
+      <a href="leave.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3.5h9l3 3V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1Z"/><path d="M9 12.5l2 2 4-4.5"/></svg><span id="navLeaveLabel">Leave</span></a>
+      <a href="payroll.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12.5" rx="2"/><path d="M3 10.5h18"/><circle cx="7.2" cy="14.5" r="1"/></svg>Payroll</a>
+    </nav>
+    <div class="sidebar-user">
+      <img class="avatar" data-user-avatar src="" alt="">
+      <div>
+        <div class="u-name" data-user-name>—</div>
+        <div class="u-role" data-user-role>—</div>
+      </div>
+      <button class="sidebar-logout" data-logout title="Log out">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-row">
+        <div>
+          <h1>Attendance</h1>
+          <div class="sub" id="attSub">Daily and weekly record</div>
+        </div>
+        <select id="empSwitcher" class="field" style="display:none; width:auto; padding:10px 14px; border:1.5px solid var(--border); border-radius:8px;"></select>
+      </div>
+      <div class="flow-bar"><div class="flow-bar-fill"></div></div>
+    </header>
+
+    <div class="content">
+      <div class="grid" style="grid-template-columns: 1fr 1.4fr;">
+        <div class="card">
+          <div class="card-title">This month</div>
+          <div class="card-hint">Present · Half-day · Absent · Leave</div>
+          <div class="cal-grid" id="calDow" style="margin-bottom:8px;"></div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div style="display:flex; gap:14px; margin-top:16px; flex-wrap:wrap;">
+            <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-2);"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--flow-teal);display:inline-block;"></span>Present</span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-2);"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--flow-violet);display:inline-block;"></span>Half-day</span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-2);"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--flow-coral);display:inline-block;"></span>Absent</span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-2);"><span class="dot" style="width:8px;height:8px;border-radius:50%;background:var(--flow-amber);display:inline-block;"></span>Leave</span>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div class="card" id="selfCheckCard">
+            <div class="card-title">Today</div>
+            <div class="day-ring-wrap">
+              <div class="day-ring" id="attRing"></div>
+              <div>
+                <div id="attStatusLine" style="font-weight:600; font-size:15px; margin-bottom:6px;">—</div>
+                <button class="btn btn-accent btn-sm" id="attCheckBtn">Check in</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-head" style="margin-bottom:14px;">
+              <div class="card-title" style="margin-bottom:0;">Weekly view</div>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Day</th><th>Date</th><th>Status</th><th>Check-in</th><th>Check-out</th></tr></thead>
+                <tbody id="weekTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pagetransitions.js"></script>
+<script src="js/dayring3d.js"></script>
+<script src="js/attendance.js"></script>
+</body>
+</html>

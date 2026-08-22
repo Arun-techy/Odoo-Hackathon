@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create account · Dayflow HRMS</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<style>
+  .pw-rules { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .pw-rules span {
+    font-size: 11px; padding: 4px 9px; border-radius: var(--radius-pill);
+    background: var(--border-soft); color: var(--text-3); transition: all .18s ease;
+  }
+  .pw-rules span.ok { background: rgba(47,143,130,0.14); color: var(--flow-teal-deep); }
+</style>
+</head>
+<body class="page-enter">
+
+<div class="auth-shell">
+  <div class="auth-hero">
+    <div class="hero3d" data-hero3d></div>
+    <div class="auth-brand">
+      <div class="day-ring day-ring-mini" id="heroRingMini"></div>
+      DAYFLOW HRMS
+    </div>
+
+    <div class="auth-hero-copy">
+      <h1>Join the<br><em>flow of the day.</em></h1>
+      <p>Set up your profile once — your attendance ring, leave balance and payslips are ready from day one.</p>
+    </div>
+
+    <div class="auth-hero-foot">
+      <span>V.S.B. ENGINEERING COLLEGE</span>
+      <span>HR SUITE</span>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card" style="max-width:420px;">
+      <span class="eyebrow">Get started</span>
+      <h2 style="margin-top:8px;">Create your account</h2>
+      <p class="sub">Sign up as an employee or HR officer.</p>
+
+      <div class="banner err" id="signupBanner"></div>
+
+      <form id="signupForm" novalidate>
+        <div class="field">
+          <label>I am signing up as</label>
+          <div class="role-toggle">
+            <input type="radio" id="roleEmp" name="role" value="employee" checked>
+            <label for="roleEmp">Employee</label>
+            <input type="radio" id="roleAdmin" name="role" value="admin">
+            <label for="roleAdmin">HR / Admin</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="e.g. Krishnan V" required>
+        </div>
+
+        <div class="grid grid-2" style="gap:14px;">
+          <div class="field">
+            <label for="empId">Employee ID</label>
+            <input type="text" id="empId" name="empId" placeholder="EMP-1005">
+          </div>
+          <div class="field">
+            <label for="email">Work email</label>
+            <input type="email" id="email" name="email" placeholder="you@dayflow.hr" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Create a strong password" required autocomplete="new-password">
+          <div class="pw-rules">
+            <span data-rule="length">8+ characters</span>
+            <span data-rule="upper">Uppercase letter</span>
+            <span data-rule="number">Number</span>
+            <span data-rule="special">Special character</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-accent btn-block" style="margin-top:6px;">Create account</button>
+      </form>
+
+      <p class="auth-switch">Already have an account? <a href="index.html">Sign in</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pagetransitions.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/hero3d.js"></script>
+<script>
+  renderDayRing(document.getElementById('heroRingMini'), { percent: 38 });
+</script>
+</body>
+</html>

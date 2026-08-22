@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in · Dayflow HRMS</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="page-enter">
+
+<div class="auth-shell">
+  <div class="auth-hero">
+    <div class="hero3d" data-hero3d></div>
+    <div class="auth-brand">
+      <div class="day-ring day-ring-mini" id="heroRingMini"></div>
+      DAYFLOW HRMS
+    </div>
+
+    <div class="auth-hero-copy">
+      <h1>Every workday,<br><em>perfectly aligned.</em></h1>
+      <p>One ring for the whole day — check-ins, leave, payroll and approvals, moving together instead of living in six different tabs.</p>
+    </div>
+
+    <div class="auth-hero-foot">
+      <span>◐ ATTENDANCE</span>
+      <span>◑ LEAVE</span>
+      <span>◒ PAYROLL</span>
+      <span>◓ APPROVALS</span>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <span class="eyebrow">Welcome back</span>
+      <h2 style="margin-top:8px;">Sign in to Dayflow</h2>
+      <p class="sub">Enter your work email and password to continue.</p>
+
+      <div class="banner err" id="loginBanner"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@dayflow.hr" required autocomplete="username">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+      </form>
+
+      <div class="divider" style="margin:22px 0;"></div>
+      <p class="hint" style="margin-bottom:10px;">Try a demo account:</p>
+      <div style="display:flex; gap:8px;">
+        <button type="button" class="btn btn-ghost btn-sm" data-demo="admin" style="flex:1;">HR Officer demo</button>
+        <button type="button" class="btn btn-ghost btn-sm" data-demo="employee" style="flex:1;">Employee demo</button>
+      </div>
+
+      <p class="auth-switch">New to Dayflow? <a href="signup.html">Create an account</a></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/pagetransitions.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/hero3d.js"></script>
+<script>
+  renderDayRing(document.getElementById('heroRingMini'), { percent: 62 });
+</script>
+</body>
+</html>
